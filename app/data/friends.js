@@ -1,8 +1,7 @@
 // ===============================================================================
 // DATA
 // Below data will hold all of the friends arrays.
-// Initially we just set it equal to a "dummy" customer.
-// But you could have it be an empty array as well.
+// Initially we just set it equal to some "dummy" friends.
 // ===============================================================================
 
 var friendsData = [
@@ -26,6 +25,6 @@ var friendsData = [
     }
   ];
   
-  // Note how we export the array. This makes it accessible to other files using require.
+  // We export the array. This makes it accessible to other files using require.
   module.exports = friendsData;
   

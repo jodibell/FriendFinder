@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Reservation Page</title>
+  <title>Friend Finder Survey</title>
 
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -165,12 +165,6 @@
   </div>
 
   <!--Modal to display best friend match-->
-  <!--Button to trigger modal-->
-  <!--<button type="button" class="btn btn-primary submit" data-toggle="modal" data-target="#exampleModalCenter">
-  Submit
-</button>-->
-
-  <!-- Modal -->
   <div class="modal fade" id="friendMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -188,7 +182,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
         </div>
       </div>
     </div>
@@ -197,7 +190,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p><a href="/api/friends">API Friends List</a> | <a href="http://github.com/jodibell/friendfinder">Github Repo</a>
+      <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/jodibell/friendfinder">Github Repo</a>
       </p>
     </div>
   </footer>
@@ -212,8 +205,8 @@
 <script type="text/javascript">
   // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
   // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-  // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-  // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+  // Our api recognizes the route (/api/friends)... and then runs the associated code (found in apiRoutes.js).
+  // In this case the associated code "saves" the data to the friends.js file.
 
   $(".submit").on("click", function (event) {
     event.preventDefault();
@@ -241,10 +234,7 @@
 
     // This line is the magic. It"s very similar to the standard ajax function we used.
     // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-    // depending on if a tables is available or not.
-
-    //We need to pull friendsData.userAnswers at each index
+    // The callback is the response of the server. In our case, we set up code in apiRoutes that "returns" the friendMatch information.
     $.post("/api/friends", newFriend, function (res) {
       $("#friendMatchName").text(res.userName);
       $("#friendMatchPhoto").attr("src", res.userPhoto);
@@ -252,13 +242,9 @@
       console.log(res);
     });
 
-    /* Clear the form when submitting
-    $("#reserve-name").val("");
-    $("#reserve-phone").val("");
-    $("#reserve-email").val("");
-    $("#reserve-unique-id").val("");
-
-  });*/
+    //Clear the form when submitting
+    $("#userName").val("");
+    $("#userPhoto").val("");
 
   });
 
